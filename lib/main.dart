@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pookie_bookie/view/home/menu/view/menu_view.dart';
+import 'package:pookie_bookie/view/home/view/menu_view.dart';
+
 import 'package:provider/provider.dart';
 import 'core/init/cache/locale_manager.dart';
 import 'core/init/navigation/navigation_route.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: Provider.of<ThemeNotifier>(context, listen: false).currentTheme,
       home: MenuView(),
       onGenerateRoute: NavigationRoute.instance.generateRoute,
-      // navigatorKey: NavigationService.instance.navigatorKey,
+      navigatorKey: NavigationService.instance.navigatorKey,
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pookie_bookie/core/init/theme/light/color_scheme_light.dart';
 
 // import '../../constants/app/app_constant.dart';
 import 'app_theme.dart';
@@ -16,7 +17,7 @@ class AppThemeLight extends AppTheme with ILightTheme {
   @override
   ThemeData get theme => ThemeData(
       // fontFamily: ApplicationConstants.FONT_FAMILY,
-      // colorScheme: _appColorsScheme,
+
       // scaffoldBackgroundColor: Color(0xfff1f3f8),
       // textTheme: textTheme(),
       // appBarTheme: ThemeData.light().appBarTheme.copyWith(
