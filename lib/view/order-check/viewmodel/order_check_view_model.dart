@@ -7,5 +7,11 @@ class OrderCheckViewModel = _OrderCheckViewModelBase with _$OrderCheckViewModel;
 
 abstract class _OrderCheckViewModelBase with Store, BaseViewModel {
   void setContext(BuildContext context) => this.context = context;
-  void init() {}
+  void init() {
+    @observable
+    int sepet_urunu;
+    String kart_ismi;
+    int kart_no;
+    int kart_cvc;
+  }
 }

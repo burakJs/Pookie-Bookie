@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pookie_bookie/view/home/view/menu_view.dart';
-
+import 'package:pookie_bookie/view/order-check/view/order_check_view.dart';
 import 'package:provider/provider.dart';
-import 'core/init/cache/locale_manager.dart';
 import 'core/init/navigation/navigation_route.dart';
 import 'core/init/navigation/navigation_service.dart';
 import 'core/init/notifier/provider_list.dart';
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: Provider.of<ThemeNotifier>(context, listen: false).currentTheme,
-      home: MenuView(),
+      home: OrderCheckView(),
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationService.instance.navigatorKey,
     );
