@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:kartal/kartal.dart';
 
 import '../../../core/base/view/base_widget.dart';
@@ -13,11 +14,15 @@ class HomeView extends StatelessWidget {
       viewModel: HomeViewModel(),
       onModelReady: (model) {
         model.setContext(context);
+        model.init();
       },
       onPageBuilder: (BuildContext context, HomeViewModel viewModel) => Scaffold(
         appBar: AppBar(
-          leading: Text('   0', style: context.textTheme.headline4.copyWith(color: Colors.black)),
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.settings))],
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Observer(builder: (_) {
+            return Text('100', style: context.textTheme.headline4.copyWith(color: Colors.black));
+          }),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -72,7 +77,7 @@ class HomeView extends StatelessWidget {
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.clear_all), label: 'Books'),
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.shopping_basket), label: 'SA'),
+        BottomNavigationBarItem(icon: Icon(Icons.shopping_basket), label: 'Shop'),
       ],
     );
   }
@@ -85,28 +90,31 @@ class HomeView extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return SizedBox(
           height: context.dynamicHeight(0.155),
-          child: Card(
-            child: Padding(
-              padding: context.paddingLow,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(viewModel.banners[index].image),
-                    radius: 55,
-                  ),
-                  Spacer(),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        ' Bu oyuncak \nYalnızca ${viewModel.banners[index].point} puan',
-                        style: context.textTheme.headline5.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-                ],
+          child: GestureDetector(
+            onTap: () => NavigationService.instance.navigateToPage(path: '/shop'),
+            child: Card(
+              child: Padding(
+                padding: context.paddingLow,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(viewModel.banners[index].image),
+                      radius: 55,
+                    ),
+                    Spacer(),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          ' Bu oyuncak \nYalnızca ${viewModel.banners[index].point} puan',
+                          style: context.textTheme.headline5.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                  ],
+                ),
               ),
             ),
           ),
@@ -118,13 +126,13 @@ class HomeView extends StatelessWidget {
   void buildBottomNavigatonNavgiator(int value) {
     switch (value) {
       case 0:
-        NavigationService.instance.navigateToPageClear(path: '/book');
+        NavigationService.instance.navigateToPage(path: '/book');
         break;
       case 1:
         NavigationService.instance.navigateToPageClear(path: '/home');
         break;
       case 2:
-        NavigationService.instance.navigateToPageClear(path: '/shop');
+        NavigationService.instance.navigateToPage(path: '/shop');
         break;
       default:
     }

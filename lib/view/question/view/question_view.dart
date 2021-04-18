@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:kartal/kartal.dart';
+import 'package:pookie_bookie/view/book/model/book_model.dart';
 
 import '../../../core/base/view/base_widget.dart';
 import '../viewmodel/question_view_model.dart';
@@ -12,6 +13,7 @@ class QuestionView extends StatelessWidget {
       viewModel: QuestionViewModel(),
       onModelReady: (model) {
         model.setContext(context);
+        model.init();
         model.controller = PageController(initialPage: 0);
       },
       onPageBuilder: (BuildContext context, QuestionViewModel viewModel) => Scaffold(
@@ -35,12 +37,13 @@ class QuestionView extends StatelessWidget {
           itemCount: 4,
           controller: viewModel.controller,
           itemBuilder: (BuildContext context, int index) {
-            return buildContainerCard(context);
+            return buildContainerCard(context, index, viewModel);
           });
     });
   }
 
-  Container buildContainerCard(BuildContext context) {
+  Container buildContainerCard(BuildContext context, index, viewModel) {
+    var question = viewModel.questionList[index];
     return Container(
       width: context.width,
       child: Card(
@@ -50,15 +53,24 @@ class QuestionView extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Lorem ipsum dolor' * 12,
+                question.questionTitle,
                 style: context.textTheme.headline6.copyWith(color: Colors.white),
               ),
               Spacer(),
-              buildRowAnswer(context, 'A', 'Cevap 0'),
-              buildRowAnswer(context, 'B', 'Cevap bir'),
-              buildRowAnswer(context, 'C', 'Cevap 2'),
-              buildRowAnswer(context, 'D', 'Cevap 3'),
+              buildRowAnswer(context, 'A', question.answers[0], question.trueAnswer, viewModel),
+              buildRowAnswer(context, 'B', question.answers[1], question.trueAnswer, viewModel),
+              buildRowAnswer(context, 'C', question.answers[2], question.trueAnswer, viewModel),
+              buildRowAnswer(context, 'D', question.answers[3], question.trueAnswer, viewModel),
               Spacer(),
+              Observer(builder: (_) {
+                return Visibility(
+                  visible: viewModel.isVisible,
+                  child: Text(
+                    viewModel.isTrue ? 'Cevabınız Doğru' : 'Cevabınız Yanlış',
+                    style: context.textTheme.headline4.copyWith(color: Colors.white),
+                  ),
+                );
+              }),
             ],
           ),
         ),
@@ -107,7 +119,7 @@ class QuestionView extends StatelessWidget {
     );
   }
 
-  Widget buildRowAnswer(BuildContext context, String option, String answerText) {
+  Widget buildRowAnswer(BuildContext context, String option, String answerText, String trueAnswer, QuestionViewModel viewModel) {
     return Padding(
       padding: context.verticalPaddingLow,
       child: Row(
@@ -115,20 +127,35 @@ class QuestionView extends StatelessWidget {
         children: [
           ElevatedButton(
             style: ButtonStyle(backgroundColor: MaterialStateProperty.all(context.colorScheme.error)),
-            onPressed: () {},
-            child: Text(
-              option,
-              style: context.textTheme.headline6.copyWith(color: Colors.white),
-            ),
+            onPressed: () {
+              if (viewModel.isVisible == false) {
+                if (answerText == trueAnswer) {
+                  viewModel.setTrueCount();
+                  viewModel.setTrue(true);
+                  print(viewModel.trueAnswerCount);
+                } else {
+                  viewModel.setTrue(false);
+                }
+                viewModel.setVisible(true);
+              }
+            },
+            child: Observer(builder: (_) {
+              return Text(
+                option,
+                style: context.textTheme.headline6.copyWith(color: Colors.white),
+              );
+            }),
           ),
           Container(
             width: 200,
-            child: Text(
-              '$answerText' * 6,
-              overflow: TextOverflow.clip,
-              maxLines: 2,
-              style: context.textTheme.headline6.copyWith(color: Colors.white),
-            ),
+            child: Observer(builder: (_) {
+              return Text(
+                '$answerText',
+                overflow: TextOverflow.clip,
+                maxLines: 2,
+                style: context.textTheme.headline6.copyWith(color: Colors.white),
+              );
+            }),
           ),
         ],
       ),
