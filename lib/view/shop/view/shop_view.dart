@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:kartal/kartal.dart';
 
 import '../../../core/base/view/base_widget.dart';
 import '../viewmodel/shop_view_model.dart';
+import '../widget/shop_card_widget.dart';
 
 class ShopView extends StatelessWidget {
   @override
@@ -11,110 +14,46 @@ class ShopView extends StatelessWidget {
       onModelReady: (model) {
         model.setContext(context);
       },
-      onPageBuilder: (BuildContext context, ShopViewModel value) => Scaffold(
-        body: ListView(
-          children: <Widget>[searchHeader(), viewedItemListView()],
+      onPageBuilder: (BuildContext context, ShopViewModel viewModel) =>
+          Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: TextField(
+            onChanged: (value) => viewModel.searchshop(value),
+            controller: viewModel.searchController,
+            decoration: InputDecoration(
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
+                hintText: "Search İtem here"),
+          ),
         ),
-      ),
-    );
-  }
-
-  searchHeader() {
-    return Container(
-        color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 12),
-        child: Row(
-          children: <Widget>[
-            Icon(
-              Icons.arrow_back,
-              color: Colors.grey.shade700,
+        body: Observer(builder: (_) {
+          return GridView.builder(
+            itemCount: viewModel.searchShops.length <= 0
+                ? viewModel.shops.length
+                : viewModel.searchShops.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: context.width / context.height,
             ),
-            Expanded(
-              child: TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Search for brands & products",
-                ),
-              ),
-            )
-          ],
-        ));
-  }
-
-  createWishListItem() {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 4),
-      decoration:
-          BoxDecoration(border: Border.all(color: Colors.grey.shade100)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              width: 120,
-              decoration: BoxDecoration(
-                color: Colors.teal.shade200,
-                image: DecorationImage(
-                    image: AssetImage('../../../../asset/images/cikolata.jpg'),
-                    fit: BoxFit.cover),
-              ),
-            ),
-            flex: 70,
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 4),
-            child: Text(
-              "HIGHLANDER",
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 4),
-            child: Text(
-              "\$12",
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 4),
-            child: Row(
-              children: <Widget>[
-                Text(
-                  "55% OFF",
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  viewedItemListView() {
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.only(bottom: 12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-            child: Text(
-              "ITEMS YOU HAVE VIEWED",
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 8),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: 200),
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return createWishListItem();
-                },
-                itemCount: 10,
-                primary: false,
-                scrollDirection: Axis.horizontal,
-              ),
-            ),
-          )
-        ],
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                onTap: () =>
+                    viewModel.searchshop(viewModel.searchController.text),
+                child: Observer(builder: (_) {
+                  return ShopCard(
+                    shop: viewModel.searchShops.length <= 0
+                        ? viewModel.shops[index]
+                        : viewModel.searchShops[index],
+                  );
+                }),
+              );
+            },
+          );
+        }),
       ),
     );
   }

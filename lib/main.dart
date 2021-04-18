@@ -30,10 +30,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeNotifier>(context, listen: false).currentTheme,
       // Provider.of<ThemeNotifier>(context, listen: false).currentTheme,
-      home: BookView(),
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationService.instance.navigatorKey,
-      initialRoute: '/book',
+      initialRoute: '/shop',
       routes: {
         NavigatorRoutes.HOME.rawValue: (context) => HomeView(),
         NavigatorRoutes.BOOK.rawValue: (context) => BookView(),
