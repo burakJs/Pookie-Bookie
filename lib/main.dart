@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pookie_bookie/view/shop/view/shop_view.dart';
 import 'package:provider/provider.dart';
-
 import 'core/constants/enums/navigator_route_enum.dart';
 import 'core/extension/navigator_routes_extension.dart';
 import 'core/init/navigation/navigation_route.dart';
