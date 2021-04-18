@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
       home: QuestionView(),
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationService.instance.navigatorKey,
+      initialRoute: '/home',
       routes: {
         NavigatorRoutes.HOME.rawValue: (context) => HomeView(),
         NavigatorRoutes.BOOK.rawValue: (context) => BookView(),
