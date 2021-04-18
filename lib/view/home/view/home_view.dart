@@ -23,7 +23,7 @@ class HomeView extends StatelessWidget {
           child: Column(
             children: [
               buildCarouselSlider(),
-              buildListView(),
+              buildListView(viewModel),
             ],
           ),
         ),
@@ -34,9 +34,13 @@ class HomeView extends StatelessWidget {
 
   CarouselSlider buildCarouselSlider() {
     return CarouselSlider(
-      items: [Image.network('https://4kwallpapers.com/images/wallpapers/apple-logo-colorful-outline-black-background-ipad-hd-1920x1080-789.png')],
+      items: [
+        Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqt0Uum9kJ8c2Ye2DZ2kAikC0i3FR7B-jTLw&usqp=CAU'),
+        Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqIwiQO6mtrN0fe-uY4YvfjH4cYUpsLXyC9w&usqp=CAU'),
+        Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-rRZKPcDElaZqgb1XKD3e9JfJLdoo8j_lyw&usqp=CAU'),
+      ],
       options: CarouselOptions(
-        height: 300,
+        height: 200,
         aspectRatio: 16 / 9,
         viewportFraction: 0.8,
         initialPage: 0,
@@ -73,11 +77,11 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget buildListView() {
+  Widget buildListView(viewModel) {
     return ListView.builder(
       primary: false,
       shrinkWrap: true,
-      itemCount: 5,
+      itemCount: viewModel.banners.length,
       itemBuilder: (BuildContext context, int index) {
         return SizedBox(
           height: context.dynamicHeight(0.155),
@@ -88,7 +92,7 @@ class HomeView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CircleAvatar(
-                    backgroundImage: NetworkImage('https://freepikpsd.com/wp-content/uploads/2019/10/toys-png-3.png'),
+                    backgroundImage: NetworkImage(viewModel.banners[index].image),
                     radius: 55,
                   ),
                   Spacer(),
@@ -96,7 +100,7 @@ class HomeView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        ' Oyuncak Araba \nYalnızca 10 puan',
+                        ' Bu oyuncak \nYalnızca ${viewModel.banners[index].point} puan',
                         style: context.textTheme.headline5.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
                       ),
                     ],
@@ -116,6 +120,9 @@ class HomeView extends StatelessWidget {
       case 0:
         NavigationService.instance.navigateToPageClear(path: '/book');
         break;
+      case 1:
+        NavigationService.instance.navigateToPageClear(path: '/home');
+        break;
       case 2:
         NavigationService.instance.navigateToPageClear(path: '/shop');
         break;
@@ -123,23 +130,23 @@ class HomeView extends StatelessWidget {
     }
   }
 
-  PageView buildPageView(HomeViewModel viewModel) {
-    return PageView.builder(
-      onPageChanged: (value) {
-        viewModel.setPageView(value);
-        print(viewModel.pageView);
-      },
-      itemCount: 3,
-      itemBuilder: (context, index) {
-        return PageView(
-          controller: PageController(viewportFraction: 0.95),
-          children: [
-            Image.network('https://4kwallpapers.com/images/wallpapers/apple-logo-colorful-outline-black-background-ipad-hd-1920x1080-789.png')
-          ],
-        );
-      },
-    );
-  }
+  // PageView buildPageView(HomeViewModel viewModel) {
+  //   return PageView.builder(
+  //     onPageChanged: (value) {
+  //       viewModel.setPageView(value);
+  //       print(viewModel.pageView);
+  //     },
+  //     itemCount: 3,
+  //     itemBuilder: (context, index) {
+  //       return PageView(
+  //         controller: PageController(viewportFraction: 0.95),
+  //         children: [
+  //           Image.network('https://4kwallpapers.com/images/wallpapers/apple-logo-colorful-outline-black-background-ipad-hd-1920x1080-789.png')
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   // ListView buildListViewIndicator(HomeViewModel viewModel) {
   //   return ListView.builder(

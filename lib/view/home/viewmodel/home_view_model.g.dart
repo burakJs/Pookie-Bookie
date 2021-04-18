@@ -9,39 +9,25 @@ part of 'home_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeViewModel on _HomeViewModelBase, Store {
-  final _$pageViewAtom = Atom(name: '_HomeViewModelBase.pageView');
+  final _$bannersAtom = Atom(name: '_HomeViewModelBase.banners');
 
   @override
-  int get pageView {
-    _$pageViewAtom.reportRead();
-    return super.pageView;
+  List<dynamic> get banners {
+    _$bannersAtom.reportRead();
+    return super.banners;
   }
 
   @override
-  set pageView(int value) {
-    _$pageViewAtom.reportWrite(value, super.pageView, () {
-      super.pageView = value;
+  set banners(List<dynamic> value) {
+    _$bannersAtom.reportWrite(value, super.banners, () {
+      super.banners = value;
     });
-  }
-
-  final _$_HomeViewModelBaseActionController =
-      ActionController(name: '_HomeViewModelBase');
-
-  @override
-  void setPageView(int val) {
-    final _$actionInfo = _$_HomeViewModelBaseActionController.startAction(
-        name: '_HomeViewModelBase.setPageView');
-    try {
-      return super.setPageView(val);
-    } finally {
-      _$_HomeViewModelBaseActionController.endAction(_$actionInfo);
-    }
   }
 
   @override
   String toString() {
     return '''
-pageView: ${pageView}
+banners: ${banners}
     ''';
   }
 }
