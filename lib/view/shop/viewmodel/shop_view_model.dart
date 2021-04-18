@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pookie_bookie/core/base/model/base_view_model.dart';
+
+import '../../../core/base/model/base_view_model.dart';
+
 part 'shop_view_model.g.dart';
 
 class ShopViewModel = _ShopViewModelBase with _$ShopViewModel;

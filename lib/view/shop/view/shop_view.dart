@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pookie_bookie/core/base/view/base_widget.dart';
-import 'package:pookie_bookie/view/shop/viewmodel/shop_view_model.dart';
+
+import '../../../core/base/view/base_widget.dart';
+import '../viewmodel/shop_view_model.dart';
 
 class ShopView extends StatelessWidget {
   @override

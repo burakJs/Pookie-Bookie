@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:kartal/kartal.dart';
-import 'package:pookie_bookie/core/base/view/base_widget.dart';
-import 'package:pookie_bookie/core/init/navigation/navigation_service.dart';
-import 'package:pookie_bookie/view/home/viewmodel/home_view_model.dart';
+
+import '../../../core/base/view/base_widget.dart';
+import '../../../core/init/navigation/navigation_service.dart';
+import '../viewmodel/home_view_model.dart';
 
 class HomeView extends StatelessWidget {
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pookie_bookie/view/book/model/book_model.dart';
+import 'package:kartal/kartal.dart';
+import '../model/book_model.dart';
 
 class BookCard extends StatelessWidget {
   const BookCard({Key key, this.book}) : super(key: key);
@@ -8,21 +9,23 @@ class BookCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black54,
-      child: Center(
-        child: Column(
-          children: [
-            Icon(
-              book.img,
-              size: 80.0,
-              color: Colors.black,
-            ),
-            Text(
-              book.title,
-              style: TextStyle(color: Colors.black, fontSize: 35),
-            )
-          ],
-        ),
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Image.network(
+            book.img,
+            height: context.height / 4,
+          ),
+          Text(
+            book.title,
+            style: TextStyle(color: Colors.black, fontSize: 24),
+          ),
+          Text(
+            '${book.point.toString()} Puan',
+            style: TextStyle(color: Colors.black, fontSize: 24),
+          )
+        ],
       ),
     );
   }

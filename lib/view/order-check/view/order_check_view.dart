@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pookie_bookie/core/base/view/base_widget.dart';
-import 'package:pookie_bookie/view/order-check/viewmodel/order_check_view_model.dart';
+import '../../../core/base/view/base_widget.dart';
+import '../viewmodel/order_check_view_model.dart';
 
 class OrderCheckView extends StatelessWidget {
   @override

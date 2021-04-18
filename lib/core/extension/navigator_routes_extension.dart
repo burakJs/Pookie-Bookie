@@ -1,4 +1,4 @@
-import 'package:pookie_bookie/core/constants/enums/navigator_route_enum.dart';
+import '../constants/enums/navigator_route_enum.dart';
 
 extension NavigatorRouteExtension on NavigatorRoutes {
   String get rawValue {
