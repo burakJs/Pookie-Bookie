@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeNotifier>(context, listen: false).currentTheme,
       // Provider.of<ThemeNotifier>(context, listen: false).currentTheme,
-      home: QuestionView(),
+      home: BookView(),
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationService.instance.navigatorKey,
       initialRoute: '/home',
