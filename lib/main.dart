@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pookie_bookie/view/shop/view/shop_view.dart';
 import 'package:provider/provider.dart';
-
 import 'core/constants/enums/navigator_route_enum.dart';
 import 'core/extension/navigator_routes_extension.dart';
 import 'core/init/navigation/navigation_route.dart';
@@ -30,10 +30,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeNotifier>(context, listen: false).currentTheme,
       // Provider.of<ThemeNotifier>(context, listen: false).currentTheme,
-      home: BookView(),
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationService.instance.navigatorKey,
-      initialRoute: '/book',
+      initialRoute: '/shop',
       routes: {
         NavigatorRoutes.HOME.rawValue: (context) => HomeView(),
         NavigatorRoutes.BOOK.rawValue: (context) => BookView(),
