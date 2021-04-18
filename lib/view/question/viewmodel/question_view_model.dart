@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pookie_bookie/core/base/model/base_view_model.dart';
+
+import '../../../core/base/model/base_view_model.dart';
+
 part 'question_view_model.g.dart';
 
 class QuestionViewModel = _QuestionViewModelBase with _$QuestionViewModel;

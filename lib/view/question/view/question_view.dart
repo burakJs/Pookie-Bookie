@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:kartal/kartal.dart';
-import 'package:pookie_bookie/core/base/view/base_widget.dart';
-import 'package:pookie_bookie/view/question/viewmodel/question_view_model.dart';
+
+import '../../../core/base/view/base_widget.dart';
+import '../viewmodel/question_view_model.dart';
 
 class QuestionView extends StatelessWidget {
   @override

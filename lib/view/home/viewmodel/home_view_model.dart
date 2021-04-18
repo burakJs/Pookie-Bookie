@@ -1,9 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pookie_bookie/core/base/model/base_view_model.dart';
-import 'package:pookie_bookie/view/home/model/top_toy_model.dart';
+
+import '../../../core/base/model/base_view_model.dart';
+import '../model/top_toy_model.dart';
+
 part 'home_view_model.g.dart';
 
 class HomeViewModel = _HomeViewModelBase with _$HomeViewModel;
