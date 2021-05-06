@@ -1,19 +1,6 @@
-# pookie_bookie
+# Pookie Bookie
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Projemiz ile çocukların kitap okuma alışkanlığı kazanmasına  ve kendi kendine para biriktirip tutumlu olmayı öğrenmesine yardımcı olmayı hedefliyoruz. Uygulamamızda bulunan kitaplardan okuduğunu seçerek o kitabın 4 soruluk sınavına girer. Bu sınavda eğer %50 başarı ve üstünde bir başarıya sahipse uygulamadaki puanına o kitabın değeri eklenir. O puanla uygulamamızda bulunan marketten ürün alabilir. Örneğin orda bulunan bir oyuncak arabayı puanını harcayıp alabilir.
 
 # Screenshot
 
